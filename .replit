@@ -1,0 +1,51 @@
+modules = ["nodejs-20", "web", "postgresql-16", "go"]
+run = "npm run dev"
+hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["solc", "go"]
+
+[deployment]
+deploymentTarget = "autoscale"
+build = ["npm", "run", "build"]
+run = ["npm", "run", "start"]
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[env]
+PORT = "5000"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[agent]
+mockupState = "FULLSTACK"
+integrations = ["github:1.0.0"]
+
+[userenv]
+
+[userenv.shared]
+BRIDGE_CONTRACT_ADDRESS = "0x565d7aab0a05d82c7435c23c2763df99358b0969"
+USDM_TOKEN_ADDRESS = "0xac14f1b326362ec81f7230e5ac1247f7b5db3cf3"
+USDM_SWAP_ADDRESS = "0x043406e193c47d8976710f8a04774f7d6980bfca"
