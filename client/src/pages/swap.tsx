@@ -239,29 +239,6 @@ export default function SwapPage() {
             <h1 className="text-3xl font-bold mb-2 text-white">Swap on MegaETH</h1>
           </motion.div>
 
-          {authenticated && activeWallet && (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="grid grid-cols-2 gap-3 mb-4"
-            >
-              <div className="bg-neutral-900 rounded-xl p-3 border border-neutral-800">
-                <div className="flex items-center gap-2 mb-1 text-xs text-neutral-500">
-                  <img src="https://assets.coingecko.com/coins/images/279/small/ethereum.png" className="w-4 h-4 rounded-full" alt="ETH" />
-                  ETH Balance
-                </div>
-                <div className="text-lg font-bold text-white" data-testid="text-eth-balance">{ethBalance} ETH</div>
-              </div>
-              <div className="bg-neutral-900 rounded-xl p-3 border border-neutral-800">
-                <div className="flex items-center gap-2 mb-1 text-xs text-neutral-500">
-                  <div className="w-4 h-4 rounded-full bg-[#d4c4a8] flex items-center justify-center text-[#0a0a0a] font-bold text-[8px]">$</div>
-                  USDM Balance
-                </div>
-                <div className="text-lg font-bold text-white" data-testid="text-usdm-balance">{usdmBalance} USDM</div>
-              </div>
-            </motion.div>
-          )}
-
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -378,7 +355,7 @@ export default function SwapPage() {
                   className="w-full h-11 bg-[#d4c4a8] hover:bg-[#c4b498] text-[#0a0a0a] font-bold cursor-pointer disabled:opacity-40 disabled:bg-neutral-700 disabled:text-neutral-500 transition-all" 
                   data-testid="button-swap"
                 >
-                  {isSwapping ? <><Activity className="w-4 h-4 animate-spin mr-2" />Swapping...</> : <><Zap className="w-4 h-4 mr-2" />Swap Now</>}
+                  {isSwapping ? <><Activity className="w-4 h-4 animate-spin mr-2" />Swapping...</> : <>Swap Now</>}
                 </Button>
               )}
 
